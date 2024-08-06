@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { EnvConfiguration } from './config/app.config';
 import { JoiSchemaValidation } from './config/joi.schemaValidation';
 import { CommonModule } from './common/common.module';
+import { PokemonModule } from './pokemon/pokemon.module';
 
 @Module({
   imports: [
@@ -24,6 +25,8 @@ import { CommonModule } from './common/common.module';
     }),
 
     CommonModule,
+
+    PokemonModule,
   ],
 })
 export class AppModule {}
