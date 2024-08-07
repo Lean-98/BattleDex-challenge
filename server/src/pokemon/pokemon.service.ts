@@ -58,7 +58,7 @@ export class PokemonService {
   async findAll(paginationDto: PaginationDto) {
     const { limit = 5, offset = 0 } = paginationDto;
     try {
-      const pokemons = await this.pokemonRepository.find({
+      const [pokemons, total] = await this.pokemonRepository.findAndCount({
         take: limit,
         skip: offset,
         relations: {
@@ -66,13 +66,20 @@ export class PokemonService {
         },
       });
 
-      return pokemons.map((product) => ({
+      const formattedPokemons = pokemons.map((product) => ({
         ...product,
         categories: product.categories.map(({ id, name }) => ({
           id,
           name,
         })),
       }));
+
+      return {
+        data: formattedPokemons,
+        total,
+        limit,
+        offset,
+      };
     } catch (error) {
       this.handleDBExceptions(error);
     }
@@ -152,6 +159,7 @@ export class PokemonService {
       if (affected === 0) {
         throw new NotFoundException(`Pokemon not found for id: ${id}`);
       }
+      return { id, message: 'Pokemon was deleted successfully.' };
     } catch (error) {
       this.handleDBExceptions(error);
     }

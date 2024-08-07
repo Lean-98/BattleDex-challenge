@@ -1,60 +1,55 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsArray,
-  IsEnum,
-  IsInt,
-  IsNotEmpty,
-  IsNumber,
-  IsString,
-  MinLength,
-} from 'class-validator';
 import { CategoryType } from '../interfaces/category.interfaces';
 
-export class CreatePokemonDto {
+class CategoryResponse {
+  @ApiProperty({
+    example: '546ca347-84e3-4148-9fd1-d2a308fd3b1e',
+    description: 'Category ID',
+  })
+  id: string;
+
+  @ApiProperty({
+    example: 'electric',
+    description: 'Category name',
+  })
+  name: CategoryType;
+}
+
+export class CreatePokemonResponseDto {
+  @ApiProperty({
+    example: '0290eeff-94e3-43e9-832a-a1ef6c4fed83',
+    description: 'Pokemon ID',
+  })
+  id: string;
+
   @ApiProperty({
     example: 'Pikachu2',
-    description: 'Name pokemon',
-    minLength: 3,
+    description: 'Name of the Pokemon',
   })
-  @IsString()
-  @IsNotEmpty()
-  @MinLength(3)
   name: string;
 
   @ApiProperty({
     example: 55,
     description: 'Attack points',
   })
-  @IsNumber()
-  @IsInt()
-  @IsNotEmpty()
   attack: number;
 
   @ApiProperty({
     example: 40,
     description: 'Defense points',
   })
-  @IsNumber()
-  @IsInt()
-  @IsNotEmpty()
   defense: number;
 
   @ApiProperty({
     example: 35,
     description: 'Health points',
   })
-  @IsNumber()
-  @IsInt()
-  @IsNotEmpty()
   hp: number;
 
   @ApiProperty({
     example: 90,
     description: 'Speed points',
   })
-  @IsNumber()
-  @IsInt()
-  @IsNotEmpty()
   speed: number;
 
   @ApiProperty({
@@ -62,15 +57,11 @@ export class CreatePokemonDto {
       'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png',
     description: 'Pokemon image URL',
   })
-  @IsString()
-  @IsNotEmpty()
   imageUrl: string;
 
   @ApiProperty({
-    example: ['electric'],
+    type: [CategoryResponse],
     description: 'Pokemon categories',
   })
-  @IsArray()
-  @IsEnum(CategoryType, { each: true }) // Valida que cada categoría esté en CategoryType
-  categories: CategoryType[];
+  categories: CategoryResponse[];
 }
