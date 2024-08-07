@@ -7,10 +7,12 @@ import {
   Delete,
   ParseUUIDPipe,
   Patch,
+  Query,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { PokemonService } from './pokemon.service';
 import { CreatePokemonDto, UpdatePokemonDto } from './dto';
+import { PaginationDto } from '../common/dtos/pagination.dto';
 
 @ApiTags('Pokemon')
 @Controller('pokemon')
@@ -23,8 +25,8 @@ export class PokemonController {
   }
 
   @Get()
-  findAll() {
-    return this.pokemonService.findAll();
+  findAll(@Query() paginationDto: PaginationDto) {
+    return this.pokemonService.findAll(paginationDto);
   }
 
   @Get(':id')

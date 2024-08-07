@@ -10,6 +10,7 @@ import { Pokemon } from './entities/pokemon.entity';
 import { Category } from './entities/category.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CategoryType } from './interfaces';
+import { PaginationDto } from '../common/dtos/pagination.dto';
 
 @Injectable()
 export class PokemonService {
@@ -54,9 +55,12 @@ export class PokemonService {
     }
   }
 
-  async findAll() {
+  async findAll(paginationDto: PaginationDto) {
+    const { limit = 5, offset = 0 } = paginationDto;
     try {
       const pokemons = await this.pokemonRepository.find({
+        take: limit,
+        skip: offset,
         relations: {
           categories: true,
         },
