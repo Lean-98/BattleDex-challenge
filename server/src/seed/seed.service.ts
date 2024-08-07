@@ -6,7 +6,7 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { PokemonService } from '../pokemon/pokemon.service';
-import { Category } from '../pokemon/entities/category.entity';
+import { Category } from '../pokemon/entities';
 import { initialData } from './data/seed-data';
 
 @Injectable()

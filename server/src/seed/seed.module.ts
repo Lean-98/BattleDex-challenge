@@ -3,8 +3,7 @@ import { SeedService } from './seed.service';
 import { SeedController } from './seed.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PokemonModule } from '../pokemon/pokemon.module';
-import { Pokemon } from '../pokemon/entities/pokemon.entity';
-import { Category } from '../pokemon/entities/category.entity';
+import { Category, Pokemon } from '../pokemon/entities';
 
 @Module({
   controllers: [SeedController],

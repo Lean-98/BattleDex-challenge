@@ -4,13 +4,12 @@ import {
   Logger,
   NotFoundException,
 } from '@nestjs/common';
-import { Repository } from 'typeorm';
-import { CreatePokemonDto, UpdatePokemonDto } from './dto';
-import { Pokemon } from './entities/pokemon.entity';
-import { Category } from './entities/category.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CategoryType } from './interfaces';
+import { Repository } from 'typeorm';
+import { Category, Pokemon } from './entities';
+import { CreatePokemonDto, UpdatePokemonDto } from './dto';
 import { PaginationDto } from '../common/dtos/pagination.dto';
+import { CategoryType } from './interfaces';
 
 @Injectable()
 export class PokemonService {

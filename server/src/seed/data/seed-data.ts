@@ -1,4 +1,4 @@
-import { CategoryType, type PokemonInterface } from 'src/pokemon/interfaces';
+import { CategoryType, type PokemonInterface } from '../../pokemon/interfaces';
 
 interface SeedData {
   pokemons: PokemonInterface[];
