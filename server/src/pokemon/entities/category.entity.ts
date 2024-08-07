@@ -20,11 +20,12 @@ export class Category {
   @Column({
     type: 'text',
     nullable: false,
-    unique: true,
   })
   name: string;
 
   // Relations
-  @ManyToOne(() => Pokemon, (pokemon) => pokemon.categories)
-  pokemon: Pokemon;
+  @ManyToOne(() => Pokemon, (pokemon) => pokemon.categories, {
+    onDelete: 'CASCADE',
+  })
+  pokemons: Pokemon[];
 }

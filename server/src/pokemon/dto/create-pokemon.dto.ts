@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
+  IsArray,
   IsEnum,
   IsInt,
   IsNotEmpty,
@@ -21,7 +22,7 @@ export class CreatePokemonDto {
   name: string;
 
   @ApiProperty({
-    example: 4,
+    example: 55,
     description: 'Attack points',
   })
   @IsNumber()
@@ -30,7 +31,7 @@ export class CreatePokemonDto {
   attack: number;
 
   @ApiProperty({
-    example: 3,
+    example: 40,
     description: 'Defense points',
   })
   @IsNumber()
@@ -39,7 +40,7 @@ export class CreatePokemonDto {
   defense: number;
 
   @ApiProperty({
-    example: 3,
+    example: 35,
     description: 'Health points',
   })
   @IsNumber()
@@ -48,7 +49,7 @@ export class CreatePokemonDto {
   hp: number;
 
   @ApiProperty({
-    example: 6,
+    example: 90,
     description: 'Speed points',
   })
   @IsNumber()
@@ -66,11 +67,10 @@ export class CreatePokemonDto {
   imageUrl: string;
 
   @ApiProperty({
-    example: CategoryType.electric,
-    description: 'Category type',
-    enum: CategoryType,
+    example: ['electric'],
+    description: 'Pokemon categories',
   })
-  @IsEnum(CategoryType)
-  @IsNotEmpty()
-  category: CategoryType;
+  @IsArray()
+  @IsEnum(CategoryType, { each: true }) // Valida que cada categoría esté en CategoryType
+  categories: CategoryType[];
 }

@@ -25,7 +25,7 @@ export class Pokemon {
   name: string;
 
   @ApiProperty({
-    example: 4,
+    example: 55,
     description: 'Attack power',
   })
   @Column({
@@ -35,7 +35,7 @@ export class Pokemon {
   attack: number;
 
   @ApiProperty({
-    example: 3,
+    example: 40,
     description: 'Defense points',
   })
   @Column({
@@ -45,7 +45,7 @@ export class Pokemon {
   defense: number;
 
   @ApiProperty({
-    example: 3,
+    example: 35,
     description: 'Health points',
   })
   @Column({
@@ -55,7 +55,7 @@ export class Pokemon {
   hp: number;
 
   @ApiProperty({
-    example: 6,
+    example: 90,
     description: 'Speed points',
   })
   @Column({
@@ -76,6 +76,8 @@ export class Pokemon {
   imageUrl: string;
 
   // Relations
-  @OneToMany(() => Category, (category) => category.pokemon)
+  @OneToMany(() => Category, (category) => category.pokemons, {
+    cascade: true,
+  })
   categories: Category[];
 }
