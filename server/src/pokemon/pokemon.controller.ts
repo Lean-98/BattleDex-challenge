@@ -15,6 +15,7 @@ import {
   CreatePokemonDto,
   CreatePokemonResponseDto,
   DeletePokemonResponseDto,
+  PokemonsResponseDto,
   UpdatePokemonDto,
   UpdatePokemonResponseDto,
 } from './dto';
@@ -33,7 +34,7 @@ export class PokemonController {
   }
 
   @Get()
-  @ApiCrudResponses(CreatePokemonDto, 'read', 'Pokemon', true)
+  @ApiCrudResponses(PokemonsResponseDto, 'read', 'Pokemon', true)
   findAll(@Query() paginationDto: PaginationDto) {
     return this.pokemonService.findAll(paginationDto);
   }
