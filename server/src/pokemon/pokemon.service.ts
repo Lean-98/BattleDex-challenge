@@ -5,13 +5,11 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DataSource, Repository } from 'typeorm';
-import { Battle, Category, Pokemon } from './entities';
+import { Repository, DataSource } from 'typeorm';
+import { Category, Pokemon } from './entities';
 import { CreatePokemonDto, UpdatePokemonDto } from './dto';
 import { PaginationDto } from '../common/dtos/pagination.dto';
-import { CategoryType, type PokemonBattle } from './interfaces';
-import { CreateBattleDto } from './dto/create-battle.dto';
-import { calculateDamage, determineFirstAttacker } from './helpers';
+import { CategoryType } from './interfaces';
 
 @Injectable()
 export class PokemonService {
@@ -22,8 +20,6 @@ export class PokemonService {
     private readonly pokemonRepository: Repository<Pokemon>,
     @InjectRepository(Category)
     private readonly categoryRepository: Repository<Category>,
-    @InjectRepository(Battle)
-    private readonly battleRepository: Repository<Battle>,
     private readonly dataSource: DataSource,
   ) {}
 
@@ -196,91 +192,5 @@ export class PokemonService {
     throw new InternalServerErrorException(
       'Unexpected error, check server logs',
     );
-  }
-
-  async battle(createBattleDto: CreateBattleDto) {
-    const { pokemonOneId, pokemonTwoId } = createBattleDto;
-
-    // Query runner
-    const queryRunner = this.dataSource.createQueryRunner();
-    await queryRunner.connect();
-    await queryRunner.startTransaction();
-
-    try {
-      const pokemonOne = await queryRunner.manager.findOne(Pokemon, {
-        where: { id: pokemonOneId },
-      });
-      const pokemonTwo = await queryRunner.manager.findOne(Pokemon, {
-        where: { id: pokemonTwoId },
-      });
-
-      if (!pokemonOne || !pokemonTwo) {
-        throw new NotFoundException('Pokemon not found');
-      }
-
-      const firstAttacker = determineFirstAttacker(pokemonOne, pokemonTwo);
-      const secondAttacker =
-        firstAttacker === pokemonOne ? pokemonTwo : pokemonOne;
-
-      let hpFirstAttacker: number = pokemonOne.hp;
-      let hpSecondAttacker: number = pokemonTwo.hp;
-      let pokemonWinner: PokemonBattle;
-
-      // Simulación de batalla
-      while (hpFirstAttacker > 0 && hpSecondAttacker > 0) {
-        hpFirstAttacker -= calculateDamage(
-          secondAttacker.attack,
-          firstAttacker.defense,
-        );
-        if (hpFirstAttacker <= 0) {
-          pokemonWinner = secondAttacker;
-          break; // salir del ciclo
-        }
-
-        hpSecondAttacker -= calculateDamage(
-          firstAttacker.attack,
-          secondAttacker.defense,
-        );
-        if (hpSecondAttacker <= 0) {
-          pokemonWinner = firstAttacker;
-          break;
-        }
-      }
-
-      if (!pokemonWinner) {
-        throw new NotFoundException('No winner determined in the battle');
-      }
-
-      const battle = this.battleRepository.create({
-        pokemonOneId,
-        pokemonTwoId,
-        winnerId: pokemonWinner.id,
-        pokemonOneHp: hpFirstAttacker,
-        pokemonTwoHp: hpSecondAttacker,
-        timestamp: new Date(),
-      });
-
-      await queryRunner.manager.save(battle);
-      await queryRunner.commitTransaction();
-
-      return {
-        pokemonWinner,
-        message: `The winner is ${pokemonWinner.name}`,
-      };
-    } catch (error) {
-      console.log(error);
-      await queryRunner.rollbackTransaction();
-      await queryRunner.release();
-      this.handleDBExceptions(error);
-    }
-  }
-
-  async deleteAllBattles() {
-    const query = this.dataSource.createQueryBuilder();
-    try {
-      await query.delete().from('battle').execute();
-    } catch (error) {
-      this.handleDBExceptions(error);
-    }
   }
 }

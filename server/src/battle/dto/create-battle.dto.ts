@@ -3,7 +3,7 @@ import { IsNotEmpty, IsUUID } from 'class-validator';
 
 export class CreateBattleDto {
   @ApiProperty({
-    example: '3f8fd0df-2cad-41ed-aa77-ff2e73c8f0a6',
+    example: '036bb972-7fb3-4fe4-ac8f-31340103c8c3',
     description: 'ID of the first Pokemon',
     uniqueItems: true,
   })
@@ -12,7 +12,7 @@ export class CreateBattleDto {
   pokemonOneId: string;
 
   @ApiProperty({
-    example: '4559136e-f2a8-4d8a-a791-e618c8f661ec',
+    example: 'd4e2f47d-cc34-4f9a-9b22-1fdc6d8722f3',
     description: 'ID of the second Pokemon',
     uniqueItems: true,
   })

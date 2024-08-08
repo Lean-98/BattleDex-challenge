@@ -6,6 +6,7 @@ import { JoiSchemaValidation } from './config/joi.schemaValidation';
 import { CommonModule } from './common/common.module';
 import { PokemonModule } from './pokemon/pokemon.module';
 import { SeedModule } from './seed/seed.module';
+import { BattleModule } from './battle/battle.module';
 
 @Module({
   imports: [
@@ -30,6 +31,8 @@ import { SeedModule } from './seed/seed.module';
     PokemonModule,
 
     SeedModule,
+
+    BattleModule,
   ],
 })
 export class AppModule {}

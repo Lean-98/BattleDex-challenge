@@ -1,4 +1,4 @@
-import type { PokemonBattle } from '../interfaces';
+import type { PokemonBattle } from '../interfaces/battle.interface';
 
 export const determineFirstAttacker = (
   pokemonOne: PokemonBattle,

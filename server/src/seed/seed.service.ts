@@ -5,11 +5,15 @@ import {
 } from '@nestjs/common';
 import { PokemonService } from '../pokemon/pokemon.service';
 import { initialData } from './data/seed-data';
+import { BattleService } from '../battle/battle.service';
 
 @Injectable()
 export class SeedService {
   private readonly logger = new Logger('SeedService');
-  constructor(private readonly pokemonService: PokemonService) {}
+  constructor(
+    private readonly pokemonService: PokemonService,
+    private readonly battleService: BattleService,
+  ) {}
 
   async runSeed() {
     try {
@@ -27,7 +31,7 @@ export class SeedService {
   private async deleteTables() {
     this.logger.log('Deleting all tables...');
     await this.pokemonService.deleteAllCategories();
-    await this.pokemonService.deleteAllBattles();
+    await this.battleService.deleteAllBattles();
     await this.pokemonService.deleteAllPokemons();
     this.logger.log('All tables deleted.');
   }
