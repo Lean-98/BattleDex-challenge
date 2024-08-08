@@ -72,5 +72,5 @@ export class Battle {
     type: 'datetime',
     nullable: false,
   })
-  timesamp: Date;
+  timestamp: Date;
 }

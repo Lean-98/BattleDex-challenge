@@ -1,2 +1,2 @@
 export { CategoryType, CategoryInterface } from './category.interfaces';
-export { PokemonInterface } from './pokemon.interfaces';
+export { PokemonInterface, PokemonBattle } from './pokemon.interfaces';

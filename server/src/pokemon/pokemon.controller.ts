@@ -17,6 +17,7 @@ import {
   DeletePokemonResponseDto,
   UpdatePokemonDto,
   UpdatePokemonResponseDto,
+  CreateBattleDto,
 } from './dto';
 import { PaginationDto } from '../common/dtos/pagination.dto';
 import { ApiCrudResponses } from '../common/decorators/apiCrudResponses.decorator';
@@ -57,5 +58,10 @@ export class PokemonController {
   @ApiCrudResponses(DeletePokemonResponseDto, 'delete', 'Pokemon')
   remove(@Param('id', ParseUUIDPipe) id: string) {
     return this.pokemonService.remove(id);
+  }
+
+  @Post('battle')
+  async createBattle(@Body() createBattleDto: CreateBattleDto) {
+    return this.pokemonService.battle(createBattleDto);
   }
 }
