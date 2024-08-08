@@ -169,10 +169,19 @@ export class PokemonService {
     }
   }
 
-  async deleteAllPokemons() {
-    const query = this.pokemonRepository.createQueryBuilder('pokemons');
+  async deleteAllCategories() {
+    const query = this.dataSource.createQueryBuilder();
     try {
-      return await query.delete().where({}).execute();
+      await query.delete().from('categories').execute();
+    } catch (error) {
+      this.handleDBExceptions(error);
+    }
+  }
+
+  async deleteAllPokemons() {
+    const query = this.dataSource.createQueryBuilder();
+    try {
+      await query.delete().from('pokemon').execute();
     } catch (error) {
       this.handleDBExceptions(error);
     }
@@ -262,6 +271,15 @@ export class PokemonService {
       console.log(error);
       await queryRunner.rollbackTransaction();
       await queryRunner.release();
+      this.handleDBExceptions(error);
+    }
+  }
+
+  async deleteAllBattles() {
+    const query = this.dataSource.createQueryBuilder();
+    try {
+      await query.delete().from('battle').execute();
+    } catch (error) {
       this.handleDBExceptions(error);
     }
   }

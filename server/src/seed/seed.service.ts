@@ -3,20 +3,13 @@ import {
   InternalServerErrorException,
   Logger,
 } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { PokemonService } from '../pokemon/pokemon.service';
-import { Category } from '../pokemon/entities';
 import { initialData } from './data/seed-data';
 
 @Injectable()
 export class SeedService {
   private readonly logger = new Logger('SeedService');
-  constructor(
-    private readonly pokemonService: PokemonService,
-    @InjectRepository(Category)
-    private readonly pokemonCategoryRepository: Repository<Category>,
-  ) {}
+  constructor(private readonly pokemonService: PokemonService) {}
 
   async runSeed() {
     try {
@@ -33,10 +26,9 @@ export class SeedService {
 
   private async deleteTables() {
     this.logger.log('Deleting all tables...');
+    await this.pokemonService.deleteAllCategories();
+    await this.pokemonService.deleteAllBattles();
     await this.pokemonService.deleteAllPokemons();
-
-    const queryBuilder = this.pokemonCategoryRepository.createQueryBuilder();
-    await queryBuilder.delete().where({}).execute();
     this.logger.log('All tables deleted.');
   }
 
