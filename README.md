@@ -1,4 +1,5 @@
 ## Challenge
+
 La aplicación es una batalla de Pokémon. Cada uno tiene diferentes stats, como ataque y defensa, por ejemplo, y tenemos que hacerlos batallar entre ellos.
 
 ## Objetivos de Backend
@@ -34,6 +35,7 @@ La aplicación es una batalla de Pokémon. Cada uno tiene diferentes stats, como
 5. Conectar con el Backend.
 
 ## Diseño UI/UX
+
 [![Design.png](https://i.postimg.cc/8kq3rRc2/Design.png)](https://postimg.cc/yWynMSFj)
 
 ## Algoritmo de Batalla
@@ -50,11 +52,13 @@ Para el cálculo de la batalla, ten en consideración lo siguiente:
 ## Tecnología a Usar
 
 **Backend:**
+
 - NestJS
 - TypeORM
 - SQLite
 
 **Frontend:**
+
 - React
 - MaterialUI
 
@@ -63,6 +67,7 @@ Para el cálculo de la batalla, ten en consideración lo siguiente:
 El código se debe entregar en un repositorio público para ser revisado. Por favor, adicionar un README con instrucciones.
 
 ## Project Structure
+
 ```
 root/
 ├── client/ # All frontend-related files
@@ -75,14 +80,20 @@ root/
 1. **Clona el repositorio:**
    ```bash
    git clone <URL del repositorio>
+   ```
+
 #### Backend:
+
 2. Ve al directorio del backend: `cd server`
 3. Instala las dependencias: `npm i`
 4. Clonar el archivo `.env.template` y renombrarlo por `.env`
 5. Actualizar las variables de entorno.
 6. Inicia la aplicación:
    `npm run start:dev`
+7. Accede a la documentación de Swagger en: http://localhost:3000/api
+
 #### Frontend:
+
 1. Ve al directorio del frontend: `cd client`
 2. Instala las dependencias: `npm i`
-3. Inicia la aplicación:`npm run dev` 
+3. Inicia la aplicación:`npm run dev`
