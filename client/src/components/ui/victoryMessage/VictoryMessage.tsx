@@ -1,7 +1,21 @@
+import { useEffect } from 'react';
 import { Typography } from '@mui/material';
+import confetti from 'canvas-confetti';
 import type { VictoryMessageProps } from '../../../interfaces/components';
 
+const shootConfetti = () => {
+  confetti({
+    particleCount: 100,
+    spread: 70,
+    origin: { y: 0.6 },
+  });
+};
+
 export const VictoryMessage: React.FC<VictoryMessageProps> = ({ winner }) => {
+  useEffect(() => {
+    shootConfetti();
+  }, [winner]);
+
   return (
     <Typography
       variant="h6"
