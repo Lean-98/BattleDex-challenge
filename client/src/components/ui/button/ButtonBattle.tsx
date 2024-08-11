@@ -1,5 +1,5 @@
 import Button from '@mui/material/Button';
-import type { ButtonProps } from '../../../interfaces';
+import type { ButtonProps } from '../../../interfaces/components';
 
 export const ButtonBattle: React.FC<ButtonProps> = ({
   arialLabel,

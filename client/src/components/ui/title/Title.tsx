@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import type { TitleProps } from '../../../interfaces';
+import type { TitleProps } from '../../../interfaces/components';
 
 export const Title: React.FC<TitleProps> = ({ text }) => {
   return (

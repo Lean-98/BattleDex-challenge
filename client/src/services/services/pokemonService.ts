@@ -1,6 +1,6 @@
 import axios, { type AxiosResponse } from 'axios';
-import type { Pokemon } from '../../interfaces';
 import { handleAxiosError } from '../helpers/handleAxiosError';
+import type { Pokemon } from '../../interfaces/services';
 
 const API_URL = 'http://localhost:3000/api';
 

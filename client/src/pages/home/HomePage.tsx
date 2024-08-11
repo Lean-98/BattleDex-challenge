@@ -5,8 +5,17 @@ import {
   SubTitle,
   Title,
 } from '../../components';
+import { usePokemonBattle } from '../../hooks/usePokemonBattle';
 
 export const HomePage = () => {
+  const {
+    battleResult,
+    handleSelectedPokemon,
+    handleStartBattle,
+    opponentPokemon,
+    selectedPokemon,
+  } = usePokemonBattle();
+
   return (
     <Grid
       container
@@ -23,13 +32,18 @@ export const HomePage = () => {
       <Grid item xs={12} sx={{ marginY: '1rem' }}>
         <Title text="Battle of Pokemon" />
         <SubTitle text="Select your pokemon" />
-        <PokemonGrid />
+        <PokemonGrid handleSelectedPokemon={handleSelectedPokemon} />
       </Grid>
       {/* End Section SelectPokemon */}
 
       {/* Section Pokemons Battle - Stats */}
       <Grid item>
-        <PokemonsBattleGrid />
+        <PokemonsBattleGrid
+          selectedPokemon={selectedPokemon}
+          opponentPokemon={opponentPokemon}
+          handleStartBattle={handleStartBattle}
+          battleResult={battleResult}
+        />
       </Grid>
       {/* End Section Pokemons Battle - Stats */}
     </Grid>

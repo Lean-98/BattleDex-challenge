@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import type { VictoryMessageProps } from '../../../interfaces';
+import type { VictoryMessageProps } from '../../../interfaces/components';
 
 export const VictoryMessage: React.FC<VictoryMessageProps> = ({ winner }) => {
   return (

@@ -6,15 +6,15 @@ import {
   Pagination,
 } from '@mui/material';
 import { PokemonCard } from '../pokemonCard/PokemonCard';
-// import { pokemonMockData } from '../../../mock/pokemonMockData';
 import { usePokemons } from '../../../hooks/usePokemons';
 import { usePokemonPagination } from '../../../hooks/usePokemonPagination';
-import { usePokemonBattle } from '../../../hooks/usePokemonBattle';
+import type { PokemonGridProps } from '../../../interfaces/components';
 
-export const PokemonGrid = () => {
+export const PokemonGrid: React.FC<PokemonGridProps> = ({
+  handleSelectedPokemon,
+}) => {
   const { page, limit, offset, handleChangePage } = usePokemonPagination();
   const { pokemons, loading, error } = usePokemons(limit, offset);
-  const { handleSelectedPokemon } = usePokemonBattle();
 
   if (loading)
     return (
@@ -46,12 +46,12 @@ export const PokemonGrid = () => {
               image={imageUrl}
               onClick={() => {
                 handleSelectedPokemon(id);
-                console.log(id);
               }}
             />
           </Grid>
         ))}
       </Grid>
+
       {/* Pagination */}
       <div
         style={{ display: 'flex', justifyContent: 'center', marginTop: '16px' }}
@@ -63,6 +63,7 @@ export const PokemonGrid = () => {
           color="primary"
         />
       </div>
+      {/* End Pagination */}
     </>
   );
 };

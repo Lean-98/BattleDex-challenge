@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import type { Pokemon } from '../interfaces';
 import { getFilteredPokemons } from '../services/services/pokemonService';
+import type { Pokemon } from '../interfaces/services';
 
 export const usePokemons = (limit: number, offset: number) => {
   const [pokemons, setpokemons] = useState<Pokemon[]>([]);

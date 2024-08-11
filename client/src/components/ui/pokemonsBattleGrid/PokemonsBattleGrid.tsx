@@ -3,16 +3,18 @@ import { ButtonBattle } from '../button/ButtonBattle';
 import { PokemonStats } from '../pokemonStats/PokemonStats';
 import { OpponentPokemonStats } from '../opponentPokemonStats/OpponentPokemonStats';
 import { VictoryMessage } from '../victoryMessage/VictoryMessage';
-import { usePokemonBattle } from '../../../hooks/usePokemonBattle';
+import type { PokemonsBattleGridProps } from '../../../interfaces/components';
 
-export const PokemonsBattleGrid = () => {
-  const { selectedPokemon, opponentPokemon, handleStartBattle, battleResult } =
-    usePokemonBattle();
-
+export const PokemonsBattleGrid: React.FC<PokemonsBattleGridProps> = ({
+  selectedPokemon,
+  opponentPokemon,
+  handleStartBattle,
+  battleResult,
+}) => {
   return (
     <Box sx={{ textAlign: 'center', padding: '20px' }}>
       {/* VictoryMessage */}
-      <VictoryMessage winner="Pikachu" />
+      {battleResult && <VictoryMessage winner={battleResult} />}
       {/* Sección de batalla */}
       <Grid
         container
@@ -23,28 +25,18 @@ export const PokemonsBattleGrid = () => {
       >
         {/* Pokemon Selected */}
         <Grid item xs={12} xl={4}>
-          {selectedPokemon ? (
-            <PokemonStats
-              id={selectedPokemon.id}
-              name={selectedPokemon.name}
-              image={selectedPokemon.imageUrl}
-              hp={selectedPokemon.hp}
-              attack={selectedPokemon.attack}
-              defense={selectedPokemon.defense}
-              speed={selectedPokemon.speed}
-            />
-          ) : (
-            // Código para mostrar el Pokémon por defecto
-            <PokemonStats
-              id="pokemon-1"
-              name="Pikachu"
-              image="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png"
-              hp={45}
-              attack={60}
-              defense={30}
-              speed={90}
-            />
-          )}
+          <PokemonStats
+            id={selectedPokemon?.id || 'pokemon-1'}
+            name={selectedPokemon?.name || 'Pikachu'}
+            image={
+              selectedPokemon?.imageUrl ||
+              'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png'
+            }
+            hp={selectedPokemon?.hp || 45}
+            attack={selectedPokemon?.attack || 60}
+            defense={selectedPokemon?.defense || 30}
+            speed={selectedPokemon?.speed || 90}
+          />
         </Grid>
         {/* Button of Battle */}
         <Grid

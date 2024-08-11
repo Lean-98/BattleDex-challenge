@@ -1,6 +1,6 @@
-import type { PokemonInterface } from '../interfaces/pokemon.interface';
+import type { PokemonMockInterface } from '../interfaces/mock/pokemonMock.interface';
 
-export const pokemonMockData: PokemonInterface[] = [
+export const pokemonMockData: PokemonMockInterface[] = [
   {
     id: 'pokemon-1',
     name: 'Pikachu',

@@ -1,21 +1,22 @@
 import { useState } from 'react';
-import type { Pokemon } from '../interfaces';
 import {
   getAllPokemons,
   getPokemonById,
   startBattle,
 } from '../services/services/pokemonService';
+import type { UsePokemonBattleReturn } from '../interfaces/hooks/usePokemonBattleReturn.interface';
+import type { Pokemon } from '../interfaces/services';
 
-export const usePokemonBattle = () => {
+export const usePokemonBattle = (): UsePokemonBattleReturn => {
   const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null>(null);
   const [opponentPokemon, setOpponentPokemon] = useState<Pokemon | null>(null);
   const [battleResult, setBattleResult] = useState<string | null>(null);
 
   const handleSelectedPokemon = async (id: string) => {
     const pokemon = await getPokemonById(id);
-    console.log({ pokemon });
+
     setSelectedPokemon(pokemon);
-    console.log('Selected Pokemon:', pokemon);
+    // console.log('Selected Pokemon:', pokemon);
     setOpponentPokemon(null); // Resetear el oponente cuando se selecciona un nuevo pokemon
   };
 

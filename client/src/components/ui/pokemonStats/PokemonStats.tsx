@@ -6,7 +6,8 @@ import {
   Typography,
 } from '@mui/material';
 import LinearProgress from '@mui/material/LinearProgress';
-import type { PokemonStatsProps } from '../../../interfaces';
+import { MAX_STAT, normalizeStat } from '../../../helpers/normalizeStat';
+import type { PokemonStatsProps } from '../../../interfaces/components';
 
 export const PokemonStats: React.FC<PokemonStatsProps> = ({
   attack,
@@ -60,7 +61,7 @@ export const PokemonStats: React.FC<PokemonStatsProps> = ({
         </Typography>
         <LinearProgress
           variant="determinate"
-          value={hp}
+          value={(normalizeStat(hp) / MAX_STAT) * 100}
           sx={{
             marginBottom: 1,
             height: 8,
@@ -77,7 +78,7 @@ export const PokemonStats: React.FC<PokemonStatsProps> = ({
         </Typography>
         <LinearProgress
           variant="determinate"
-          value={attack}
+          value={(normalizeStat(attack) / MAX_STAT) * 100}
           sx={{
             marginBottom: 1,
             height: 8,
@@ -94,7 +95,7 @@ export const PokemonStats: React.FC<PokemonStatsProps> = ({
         </Typography>
         <LinearProgress
           variant="determinate"
-          value={defense}
+          value={(normalizeStat(defense) / MAX_STAT) * 100}
           sx={{
             marginBottom: 1,
             height: 8,
@@ -111,7 +112,7 @@ export const PokemonStats: React.FC<PokemonStatsProps> = ({
         </Typography>
         <LinearProgress
           variant="determinate"
-          value={speed}
+          value={(normalizeStat(speed) / MAX_STAT) * 100}
           sx={{
             marginBottom: 1,
             height: 8,

@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import type { SubtitleProps } from '../../../interfaces';
+import type { SubtitleProps } from '../../../interfaces/components';
 
 export const SubTitle: React.FC<SubtitleProps> = ({ text }) => {
   return (
