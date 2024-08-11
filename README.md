@@ -9,6 +9,8 @@ La aplicación es una batalla de Pokémon. Cada uno tiene diferentes stats, como
 3. Implementar un endpoint para hacerlos batallar.
 4. Guardar los resultados de las batallas en una tabla.
 
+Ejemplo de datos de Pokémon:
+
 ```
 {
   "pokemon": [
@@ -70,10 +72,27 @@ El código se debe entregar en un repositorio público para ser revisado. Por fa
 
 ```
 root/
-├── client/ # All frontend-related files
-├── server/ # All backend-related files
-└── README.md # Project description and instructions
+├── client/ # Todos los archivos relacionados con el frontend
+├── server/ # Todos los archivos relacionados con el backend
+└── README.md # Descripción e instrucciones del proyecto
 ```
+
+## Implementaciones Adicionales en el Backend
+
+1. **Documentación con Swagger**: Todos los endpoints, DTOs, entities y respuestas están documentados usando Swagger.
+2. **Paginación**: Implementación de paginación en las búsquedas de Pokémons y de registros de batallas.
+3. **Decorador para Manejo de Respuestas**: Creación de un decorador para estandarizar y simplificar la gestión de respuestas en los endpoints.
+4. **CRUD en la Entity Pokémon**: Métodos completos de CRUD para gestionar los registros de Pokémon.
+5. **Relaciones entre Pokémon y Categories**: Establecimiento de relaciones de 1 a N entre Pokémon y Categories, con métodos para eliminar registros.
+6. **Módulo de Batalla**: Métodos para crear, buscar y eliminar registros de batallas entre Pokémons.
+
+## Implementaciones Adicionales en el Frontend
+
+1. **Interactividad Mejorada**: Implementación de animaciones con `confetti` para efectos visuales en victorias.
+2. **Optimización de la UI/UX**: Mejoras en la interfaz de usuario para una experiencia más fluida y atractiva.
+3. **Mejoras en la Responsividad**: Ajustes para asegurar que la aplicación se vea bien en dispositivos móviles y escritorios.
+4. **Paginación**: Implementación de paginación para la lista de Pokémons.
+5. **Tipificación Completa**: Todos los componentes, servicios y hooks están completamente tipados para mejorar la robustez del código.
 
 ## Instrucciones para Ejecutar el Proyecto
 
@@ -90,7 +109,9 @@ root/
 5. Actualizar las variables de entorno.
 6. Inicia la aplicación:
    `npm run start:dev`
-7. Accede a la documentación de Swagger en: http://localhost:3000/api
+7. Ejecuta el seed para poblar la base de datos con Pokémons y categorías:
+   - Realiza una petición GET a: `http://localhost:3000/api/seed`
+8. Accede a la documentación de Swagger en: `http://localhost:3000/api`
 
 #### Frontend:
 
