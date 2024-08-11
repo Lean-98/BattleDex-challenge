@@ -18,7 +18,7 @@ export const VictoryMessage: React.FC<VictoryMessageProps> = ({ winner }) => {
         color: 'black',
       }}
     >
-      {`${winner} Wins!`}
+      {`${winner.name} Wins!`}
     </Typography>
   );
 };

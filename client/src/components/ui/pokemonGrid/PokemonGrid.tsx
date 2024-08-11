@@ -57,7 +57,7 @@ export const PokemonGrid: React.FC<PokemonGridProps> = ({
         style={{ display: 'flex', justifyContent: 'center', marginTop: '16px' }}
       >
         <Pagination
-          count={5}
+          count={6}
           page={page + 1}
           onChange={handleChangePage}
           color="primary"

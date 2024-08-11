@@ -1,3 +1,5 @@
+import type { PokemonWinner } from '../services';
+
 export interface VictoryMessageProps {
-  winner: string;
+  winner: PokemonWinner;
 }

@@ -1,9 +1,9 @@
-import type { Pokemon } from './pokemon.interface';
+import type { Pokemon, PokemonWinner } from '../services';
 
 export interface UsePokemonBattleReturn {
   selectedPokemon: Pokemon | null;
   opponentPokemon: Pokemon | null;
-  battleResult: string | null;
+  battleResult: PokemonWinner | null;
   handleSelectedPokemon: (id: string) => Promise<void>;
   handleStartBattle: () => Promise<void>;
 }

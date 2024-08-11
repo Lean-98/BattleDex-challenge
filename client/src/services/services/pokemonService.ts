@@ -1,6 +1,6 @@
 import axios, { type AxiosResponse } from 'axios';
 import { handleAxiosError } from '../helpers/handleAxiosError';
-import type { Pokemon } from '../../interfaces/services';
+import type { BattleResponse, Pokemon } from '../../interfaces/services';
 
 const API_URL = 'http://localhost:3000/api';
 
@@ -54,15 +54,15 @@ export const getPokemonById = async (id: string): Promise<Pokemon> => {
 
 // Fn para iniciar una batalla entre Pokemons
 export const startBattle = async (
-  pokemonId: string,
-  opponentId: string,
-): Promise<{ winner: Pokemon }> => {
+  selectedPokemon: string,
+  opponentPokemon: string,
+): Promise<BattleResponse> => {
   try {
-    const response: AxiosResponse<{ winner: Pokemon }> = await axios.post(
+    const response: AxiosResponse<BattleResponse> = await axios.post(
       `${API_URL}/battle`,
       {
-        pokemonId,
-        opponentId,
+        selectedPokemon,
+        opponentPokemon,
       },
     );
     return response.data;

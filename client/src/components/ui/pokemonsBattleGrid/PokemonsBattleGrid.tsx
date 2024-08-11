@@ -26,15 +26,15 @@ export const PokemonsBattleGrid: React.FC<PokemonsBattleGridProps> = ({
         {/* Pokemon Selected */}
         <Grid item xs={12} xl={4}>
           <PokemonStats
-            id={selectedPokemon?.id || 'pokemon-1'}
+            id={selectedPokemon?.id || 'd4e2f47d-cc34-4f9a-9b22-1fdc6d8722f3'}
             name={selectedPokemon?.name || 'Pikachu'}
             image={
               selectedPokemon?.imageUrl ||
               'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png'
             }
-            hp={selectedPokemon?.hp || 45}
-            attack={selectedPokemon?.attack || 60}
-            defense={selectedPokemon?.defense || 30}
+            hp={selectedPokemon?.hp || 35}
+            attack={selectedPokemon?.attack || 55}
+            defense={selectedPokemon?.defense || 40}
             speed={selectedPokemon?.speed || 90}
           />
         </Grid>
@@ -56,16 +56,16 @@ export const PokemonsBattleGrid: React.FC<PokemonsBattleGridProps> = ({
         {/* Opponent Pokemon */}
         <Grid item xs={12} xl={4}>
           <OpponentPokemonStats
-            id={opponentPokemon?.id || 'pokemon-5'}
+            id={opponentPokemon?.id || 'd82c9d22-d4e5-4036-b342-4b927bf5b6e5'}
             name={opponentPokemon?.name || 'Eevee'}
             image={
               opponentPokemon?.imageUrl ||
               'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/133.png'
             }
-            hp={opponentPokemon?.hp || 45}
-            attack={opponentPokemon?.attack || 30}
-            defense={opponentPokemon?.defense || 70}
-            speed={opponentPokemon?.speed || 30}
+            hp={opponentPokemon?.hp || 55}
+            attack={opponentPokemon?.attack || 55}
+            defense={opponentPokemon?.defense || 50}
+            speed={opponentPokemon?.speed || 55}
           />
         </Grid>
       </Grid>
