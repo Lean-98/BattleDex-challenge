@@ -1,0 +1,10 @@
+export { ButtonBattle } from './ui/button/ButtonBattle';
+export { Footer } from './ui/footer/Footer';
+export { OpponentPokemonStats } from './ui/opponentPokemonStats/OpponentPokemonStats';
+export { PokemonCard } from './ui/pokemonCard/PokemonCard';
+export { PokemonGrid } from './ui/pokemonGrid/PokemonGrid';
+export { PokemonsBattleGrid } from './ui/pokemonsBattleGrid/PokemonsBattleGrid';
+export { PokemonStats } from './ui/pokemonStats/PokemonStats';
+export { SubTitle } from './ui/subTitle/SubTitle';
+export { Title } from './ui/title/Title';
+export { VictoryMessage } from './ui/victoryMessage/VictoryMessage';
