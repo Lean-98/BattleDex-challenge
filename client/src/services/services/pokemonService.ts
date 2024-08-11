@@ -6,7 +6,7 @@ import type {
   PokemonsResponse,
 } from '../../interfaces/services';
 
-const API_URL = 'http://localhost:3000/api';
+const API_URL = 'http://localhost:3000/api' || 'http://localhost:3007/api';
 
 // Fn para obtener todos los Pokemons con filtros
 export const getFilteredPokemons = async (
