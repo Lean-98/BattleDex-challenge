@@ -5,19 +5,19 @@ class BattleDto {
   id: string;
 
   @ApiProperty()
-  pokemonOneId: string;
+  selectedPokemonId: string;
 
   @ApiProperty()
-  pokemonTwoId: string;
+  opponentPokemonId: string;
 
   @ApiProperty()
   winnerId: string;
 
   @ApiProperty()
-  pokemonOneHp: number;
+  selectedPokemonHp: number;
 
   @ApiProperty()
-  pokemonTwoHp: number;
+  opponentPokemonHp: number;
 
   @ApiProperty()
   timestamp: string;

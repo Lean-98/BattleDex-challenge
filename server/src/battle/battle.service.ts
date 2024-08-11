@@ -23,7 +23,7 @@ export class BattleService {
   ) {}
 
   async battle(createBattleDto: CreateBattleDto) {
-    const { pokemonOneId, pokemonTwoId } = createBattleDto;
+    const { selectedPokemonId, opponentPokemonId } = createBattleDto;
 
     // Query runner
     const queryRunner = this.dataSource.createQueryRunner();
@@ -31,23 +31,26 @@ export class BattleService {
     await queryRunner.startTransaction();
 
     try {
-      const pokemonOne = await queryRunner.manager.findOne(Pokemon, {
-        where: { id: pokemonOneId },
+      const pokemonSelected = await queryRunner.manager.findOne(Pokemon, {
+        where: { id: selectedPokemonId },
       });
-      const pokemonTwo = await queryRunner.manager.findOne(Pokemon, {
-        where: { id: pokemonTwoId },
+      const pokemonOpponent = await queryRunner.manager.findOne(Pokemon, {
+        where: { id: opponentPokemonId },
       });
 
-      if (!pokemonOne || !pokemonTwo) {
+      if (!pokemonSelected || !pokemonOpponent) {
         throw new NotFoundException('Pokemon not found');
       }
 
-      const firstAttacker = determineFirstAttacker(pokemonOne, pokemonTwo);
+      const firstAttacker = determineFirstAttacker(
+        pokemonSelected,
+        pokemonOpponent,
+      );
       const secondAttacker =
-        firstAttacker === pokemonOne ? pokemonTwo : pokemonOne;
+        firstAttacker === pokemonSelected ? pokemonOpponent : pokemonSelected;
 
-      let hpFirstAttacker: number = pokemonOne.hp;
-      let hpSecondAttacker: number = pokemonTwo.hp;
+      let hpFirstAttacker: number = pokemonSelected.hp;
+      let hpSecondAttacker: number = pokemonOpponent.hp;
       let pokemonWinner: PokemonBattle;
 
       // Simulación de batalla
@@ -76,11 +79,11 @@ export class BattleService {
       }
 
       const battle = this.battleRepository.create({
-        pokemonOneId,
-        pokemonTwoId,
+        selectedPokemonId,
+        opponentPokemonId,
         winnerId: pokemonWinner.id,
-        pokemonOneHp: hpFirstAttacker,
-        pokemonTwoHp: hpSecondAttacker,
+        opponentPokemonHp: hpFirstAttacker,
+        selectedPokemonHp: hpSecondAttacker,
         timestamp: new Date(),
       });
 
