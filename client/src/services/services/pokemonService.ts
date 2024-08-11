@@ -58,15 +58,15 @@ export const getPokemonById = async (id: string): Promise<Pokemon> => {
 
 // Fn para iniciar una batalla entre Pokemons
 export const startBattle = async (
-  selectedPokemon: string,
-  opponentPokemon: string,
+  selectedPokemonId: string,
+  opponentPokemonId: string,
 ): Promise<BattleResponse> => {
   try {
     const response: AxiosResponse<BattleResponse> = await axios.post(
       `${API_URL}/battle`,
       {
-        selectedPokemon,
-        opponentPokemon,
+        selectedPokemonId,
+        opponentPokemonId,
       },
     );
     return response.data;
