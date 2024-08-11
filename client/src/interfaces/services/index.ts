@@ -1,2 +1,2 @@
 export type { PokemonWinner, BattleResponse } from './pokemonWinner.interface';
-export type { Pokemon } from './pokemon.interface';
+export type { Pokemon, PokemonsResponse } from './pokemon.interface';

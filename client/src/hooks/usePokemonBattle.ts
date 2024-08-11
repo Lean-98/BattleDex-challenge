@@ -24,7 +24,7 @@ export const usePokemonBattle = (): UsePokemonBattleReturn => {
 
     // Filtrar para excluir el pokemon seleccionado por el usuario
     const availableOpponents = allPokemons.data.filter(
-      (pokemon) => pokemon.id !== selectedId,
+      (pokemon: Pokemon) => pokemon.id !== selectedId,
     );
 
     // Seleccionar un oponente de forma aleatoria

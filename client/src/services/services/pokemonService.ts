@@ -1,6 +1,10 @@
 import axios, { type AxiosResponse } from 'axios';
 import { handleAxiosError } from '../helpers/handleAxiosError';
-import type { BattleResponse, Pokemon } from '../../interfaces/services';
+import type {
+  BattleResponse,
+  Pokemon,
+  PokemonsResponse,
+} from '../../interfaces/services';
 
 const API_URL = 'http://localhost:3000/api';
 
@@ -8,9 +12,9 @@ const API_URL = 'http://localhost:3000/api';
 export const getFilteredPokemons = async (
   limit: number = 5,
   offset: number = 0,
-): Promise<Pokemon[]> => {
+): Promise<PokemonsResponse> => {
   try {
-    const response: AxiosResponse<Pokemon[]> = await axios.get(
+    const response: AxiosResponse<PokemonsResponse> = await axios.get(
       `${API_URL}/pokemon`,
       {
         params: { limit, offset },
@@ -26,9 +30,9 @@ export const getFilteredPokemons = async (
 export const getAllPokemons = async (
   limit: number = 30,
   offset: number = 0,
-): Promise<Pokemon[]> => {
+): Promise<PokemonsResponse> => {
   try {
-    const response: AxiosResponse<Pokemon[]> = await axios.get(
+    const response: AxiosResponse<PokemonsResponse> = await axios.get(
       `${API_URL}/pokemon`,
       {
         params: { limit, offset },

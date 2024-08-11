@@ -11,3 +11,10 @@ export interface Pokemon {
     name: string;
   }[];
 }
+
+export interface PokemonsResponse {
+  data: Pokemon[];
+  total: number;
+  limit: number;
+  offset: number;
+}
