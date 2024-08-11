@@ -3,4 +3,5 @@ export interface ButtonProps {
   arialLabel?: string;
   capitalize?: boolean;
   uppercase?: boolean;
+  onClick?: () => void;
 }

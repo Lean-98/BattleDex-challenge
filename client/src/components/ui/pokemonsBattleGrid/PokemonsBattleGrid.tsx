@@ -3,8 +3,12 @@ import { ButtonBattle } from '../button/ButtonBattle';
 import { PokemonStats } from '../pokemonStats/PokemonStats';
 import { OpponentPokemonStats } from '../opponentPokemonStats/OpponentPokemonStats';
 import { VictoryMessage } from '../victoryMessage/VictoryMessage';
+import { usePokemonBattle } from '../../../hooks/usePokemonBattle';
 
 export const PokemonsBattleGrid = () => {
+  const { selectedPokemon, opponentPokemon, handleStartBattle, battleResult } =
+    usePokemonBattle();
+
   return (
     <Box sx={{ textAlign: 'center', padding: '20px' }}>
       {/* VictoryMessage */}
@@ -19,15 +23,28 @@ export const PokemonsBattleGrid = () => {
       >
         {/* Pokemon Selected */}
         <Grid item xs={12} xl={4}>
-          <PokemonStats
-            id="pokemon-1"
-            name="Pikachu"
-            image="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png"
-            hp={45}
-            attack={60}
-            defense={30}
-            speed={90}
-          />
+          {selectedPokemon ? (
+            <PokemonStats
+              id={selectedPokemon.id}
+              name={selectedPokemon.name}
+              image={selectedPokemon.imageUrl}
+              hp={selectedPokemon.hp}
+              attack={selectedPokemon.attack}
+              defense={selectedPokemon.defense}
+              speed={selectedPokemon.speed}
+            />
+          ) : (
+            // Código para mostrar el Pokémon por defecto
+            <PokemonStats
+              id="pokemon-1"
+              name="Pikachu"
+              image="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png"
+              hp={45}
+              attack={60}
+              defense={30}
+              speed={90}
+            />
+          )}
         </Grid>
         {/* Button of Battle */}
         <Grid
@@ -41,18 +58,22 @@ export const PokemonsBattleGrid = () => {
           <ButtonBattle
             text="Start Battle"
             arialLabel="Start battle of pokemons"
+            onClick={handleStartBattle}
           />
         </Grid>
         {/* Opponent Pokemon */}
         <Grid item xs={12} xl={4}>
           <OpponentPokemonStats
-            id="pokemon-5"
-            name="Eevee"
-            image="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/133.png"
-            hp={45}
-            attack={30}
-            defense={70}
-            speed={30}
+            id={opponentPokemon?.id || 'pokemon-5'}
+            name={opponentPokemon?.name || 'Eevee'}
+            image={
+              opponentPokemon?.imageUrl ||
+              'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/133.png'
+            }
+            hp={opponentPokemon?.hp || 45}
+            attack={opponentPokemon?.attack || 30}
+            defense={opponentPokemon?.defense || 70}
+            speed={opponentPokemon?.speed || 30}
           />
         </Grid>
       </Grid>

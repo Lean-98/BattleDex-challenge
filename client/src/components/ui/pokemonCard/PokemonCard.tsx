@@ -5,7 +5,11 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import type { PokemonCardProps } from '../../../interfaces';
 
-export const PokemonCard: React.FC<PokemonCardProps> = ({ image, name }) => {
+export const PokemonCard: React.FC<PokemonCardProps> = ({
+  image,
+  name,
+  onClick,
+}) => {
   return (
     <Card
       sx={{
@@ -14,6 +18,7 @@ export const PokemonCard: React.FC<PokemonCardProps> = ({ image, name }) => {
         marginTop: 2,
         marginLeft: 2,
       }}
+      onClick={onClick}
     >
       <CardActionArea>
         <CardMedia

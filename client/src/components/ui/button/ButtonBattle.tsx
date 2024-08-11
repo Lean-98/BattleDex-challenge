@@ -6,6 +6,7 @@ export const ButtonBattle: React.FC<ButtonProps> = ({
   capitalize,
   uppercase,
   text,
+  onClick,
 }) => {
   return (
     <Button
@@ -22,6 +23,7 @@ export const ButtonBattle: React.FC<ButtonProps> = ({
         minHeight: '50px',
         fontSize: '1.2rem',
       }}
+      onClick={onClick}
     >
       {text}
     </Button>
