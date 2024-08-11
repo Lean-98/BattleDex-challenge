@@ -65,8 +65,9 @@ $ npm run test:cov
 ## Instrucciones para Ejecutar el Proyecto
 
 1. Instala las dependencias: `npm i`
-2. Clonar el archivo `.env.template` y renombrarlo por `.env`
-3. Actualizar las variables de entorno.
-4. Inicia la aplicación:
-   `npm run start:dev`
-5. Accede a la documentación de Swagger en: http://localhost:3000/api
+2. Clona el archivo `.env.template` y renómbralo como `.env`
+3. Actualiza las variables de entorno en el archivo `.env`
+4. Inicia la aplicación: `npm run start:dev`
+5. Ejecuta el seed para poblar la base de datos con Pokémons y categorías:
+   - Realiza una petición GET a: `http://localhost:3000/api/seed`
+6. Accede a la documentación de Swagger en: `http://localhost:3000/api`
